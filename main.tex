@@ -1,0 +1,176 @@
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+
+\usepackage[sfdefault]{roboto}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+\setlength{\footskip}{4pt}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{\Large\bfseries\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing*{\section}{0pt}{8pt}{5pt}
+
+\newcommand{\resumeItem}[1]{\item\small{#1}}
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+  \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & #2 \\
+    \textit{#3} & \textit{#4} \\
+  \end{tabular*}\vspace{-5pt}
+}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\newcommand{\resumeSubHeadingList}{\begin{itemize}[leftmargin=0.15in, label={}, itemsep=2pt, parsep=1pt]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{-2pt}}
+
+\begin{document}
+
+%----------HEADER----------
+\begin{center}
+  \textbf{\Huge Nada Ashraf} \\[6pt]
+  \small
+  \faPhone\ 01227768172
+  \ $|$ \
+  \href{mailto:nada666ahraff67@gmail.com}{\faEnvelope\ nada666ahraff67@gmail.com}
+  \ $|$ \
+  \href{https://nada-ashraf-portfolio.vercel.app}{\faGlobe\ nada-ashraf-portfolio.vercel.app} \\ \vspace{3pt}
+  \href{https://github.com/nada-ashraf10}{\faGithub\ nada-ashraf10}
+  \ $|$ \
+  \href{https://www.linkedin.com/in/nadaa-ashraff}{\faLinkedin\ nadaa-ashraff}
+  \ $|$ \
+  \faMapMarker\ Cairo, Egypt
+\end{center}
+
+%----------SUMMARY----------
+\section*{Summary}
+Data Engineer / ETL Developer specializing in designing, implementing, and optimizing resilient data pipelines, real-time streaming architectures, and enterprise integration solutions. Proficient in orchestrating automated workflows across Azure Data Factory, SSIS, Apache Airflow, Databricks, Delta Lake, and SQL Server. Experienced in raw data ingestion, schema modeling, query optimization, and validating strict data quality standards to deliver clean datasets for business intelligence. Open for freelance contracts and engineering roles.
+
+%----------EDUCATION----------
+\section{Education}
+\resumeSubHeadingList
+  \resumeSubheading
+    {Arab Academy for Science and Technology (AAST)}{Alexandria, Egypt}
+    {Bachelor's Degree in Computer Science}{2024 -- 2028}
+\resumeSubHeadingListEnd
+
+%----------EXPERIENCE----------
+\section{Experience}
+\resumeSubHeadingList
+
+  \resumeSubheading
+    {Digital Egypt Pioneers Initiative (DEPI)}{Egypt}
+    {Data Engineer / ETL Developer}{November 2025 -- July 2026}
+    \resumeSubHeadingList
+      \resumeItem{\textbullet\ Engineered end-to-end ETL/ELT pipelines to ingest, transform, and load large datasets from diverse sources into structured relational databases.}
+      \resumeItem{\textbullet\ Developed stored procedures, views, and complex SQL queries in SQL Server to enforce business logic and clean incoming transactional data.}
+      \resumeItem{\textbullet\ Set up validation rules, error handling routines, and automated backup strategies to ensure pipeline resilience and zero data leakage.}
+      \resumeItem{\textbullet\ Collaborated with cross-functional engineering teams to profile database bottlenecks and optimize slow-running analytical queries.}
+    \resumeSubHeadingListEnd
+
+\resumeSubHeadingListEnd
+
+%----------INTERNSHIPS----------
+\section{Internships}
+\resumeSubHeadingList
+
+  \resumeSubheading
+    {Commercial International Bank (CIB)}{Egypt}
+    {Summer Intern -- ``The Green Leap'' Program}{July 2025}
+    \resumeSubHeadingList
+      \resumeItem{\textbullet\ Participated in and completed the CIB Summer Internship Program (``The Green Leap''), mastering principles, approaches, and best practices in sustainable digital banking.}
+      \resumeItem{\textbullet\ Developed an understanding of enterprise financial workflows, data governance frameworks, and data-driven operational standards within Egypt's leading private bank.}
+      \resumeItem{\textbullet\ Explored sustainable finance frameworks and digital transformation strategies to drive operational efficiency and risk mitigation.}
+    \resumeSubHeadingListEnd
+
+\resumeSubHeadingListEnd
+
+%----------TECHNICAL SKILLS----------
+\section{Technical Skills}
+\resumeSubHeadingList
+  \resumeItem{\textbf{Programming \& Libraries}: Python, SQL, Java, JavaScript, C, C++, CSS, Pandas, NumPy, Matplotlib, Dash, Flask}
+  \resumeItem{\textbf{Databases \& Warehousing}: PostgreSQL, MySQL, SQL Server, SQLite, Data Warehousing (DWH)}
+  \resumeItem{\textbf{Data Engineering \& ETL}: ETL/ELT Pipelines, Apache Spark, Apache Airflow, Apache Kafka, SSIS, Delta Lake}
+  \resumeItem{\textbf{Cloud \& Big Data Platforms}: Microsoft Azure, Google Cloud Platform (GCP), Azure Data Factory (ADF), Azure Synapse Analytics, Databricks, Microsoft Fabric, Azure Event Hubs, Azure Stream Analytics}
+  \resumeItem{\textbf{BI \& DevOps Tools}: Microsoft Power BI, Git \& GitHub, Docker, CI/CD Pipelines, n8n Automation}
+\resumeSubHeadingListEnd
+
+\newpage
+
+%----------PROJECTS (NEWEST TO OLDEST)----------
+\section{Projects}
+\resumeSubHeadingList
+
+  \resumeSubheading
+    {Real-Time E-Commerce Streaming Pipeline}{\href{https://github.com/nada-ashraf10/Real-Time-E-Commerce}{\faGithub\ GitHub Repo}}
+    {Azure Event Hubs, Databricks, Delta Lake, PySpark, Power BI}{September 2026}
+    \resumeSubHeadingList
+      \resumeItem{\textbullet\ Engineered an end-to-end real-time stream processing pipeline ingesting high-throughput clickstream and order events via Azure Event Hubs.}
+      \resumeItem{\textbullet\ Developed distributed PySpark structured streaming jobs on Azure Databricks for real-time validation, sessionization, and windowed aggregations.}
+      \resumeItem{\textbullet\ Implemented ACID-compliant storage in Delta Lake with time-travel capabilities, serving live analytical feeds directly to Power BI dashboards.}
+      \resumeItem{\textbullet\ Designed resilient checkpointing and fault-tolerant sink mechanisms to ensure exactly-once processing semantics.}
+    \resumeSubHeadingListEnd
+
+  \resumeSubheading
+    {Wuzzuf Airflow Job Scraping Pipeline}{\href{https://github.com/nada-ashraf10/wuzzuf-airflow-pipeline}{\faGithub\ GitHub Repo}}
+    {Apache Airflow, Docker, Python, SQLite, BeautifulSoup, Pandas}{September 2026}
+    \resumeSubHeadingList
+      \resumeItem{\textbullet\ Orchestrated an automated hourly job extraction DAG pipeline using Apache Airflow deployed in a containerized Docker environment.}
+      \resumeItem{\textbullet\ Scraped live tech job vacancies using BeautifulSoup, cleaning and structuring attributes (title, company, required skills, experience level).}
+      \resumeItem{\textbullet\ Implemented automated SQLite deduplication tracking to filter previously processed postings and ensure database integrity.}
+      \resumeItem{\textbullet\ Integrated automated SMTP email notifications sending real-time HTML reports summarizing newly indexed tech opportunities.}
+    \resumeSubHeadingListEnd
+
+  \resumeSubheading
+    {Azure Data Factory Sales Pipeline}{\href{https://github.com/nada-ashraf10/Azure-Data-Factory-Sales-Pipeline}{\faGithub\ GitHub Repo}}
+    {Azure Data Factory, Azure Data Flow, Azure Blob Storage, CSV}{April 2026}
+    \resumeSubHeadingList
+      \resumeItem{\textbullet\ Architected and deployed an automated cloud sales ETL pipeline using Azure Data Factory (ADF) to ingest heterogeneous transaction logs.}
+      \resumeItem{\textbullet\ Developed mapping data flows to clean incoming CSV sales files, compute revenue metrics per order, and partition output by date.}
+      \resumeItem{\textbullet\ Configured secure Azure Blob Storage containers for cost-effective raw file staging, intermediate transformation, and final reporting delivery.}
+      \resumeItem{\textbullet\ Set up scheduled and event-based ADF triggers with integrated pipeline monitoring and automated failure alerts.}
+    \resumeSubHeadingListEnd
+
+  \resumeSubheading
+    {Telecom ETL SSIS Project}{\href{https://github.com/nada-ashraf10/Telecom-ETL-SSIS-Project}{\faGithub\ GitHub Repo}}
+    {SSIS, SQL Server, CSV, Git, Data Quality}{March 2026}
+    \resumeSubHeadingList
+      \resumeItem{\textbullet\ Built an enterprise-grade ETL pipeline using SQL Server Integration Services (SSIS) to process large telecom call detail records (CDR).}
+      \resumeItem{\textbullet\ Implemented complex transformation logic including IMSI lookup joins, IMEI parsing into TAC/SNR components, and strict timestamp validations.}
+      \resumeItem{\textbullet\ Designed robust data quality validation rules with automated error-routing to isolate corrupted records without halting execution.}
+      \resumeItem{\textbullet\ Structured SSIS control flows for automated table staging, data splitting, dynamic archiving, and database backups.}
+    \resumeSubHeadingListEnd
+
+\resumeSubHeadingListEnd
+
+%----------LANGUAGES----------
+\section{Languages}
+\resumeSubHeadingList
+  \resumeItem{\textbf{Arabic}: Native Proficiency \ $|$ \ \textbf{English}: Professional Working Proficiency (B2 Level)}
+\resumeSubHeadingListEnd
+
+\end{document}
