@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nada Ashraf | Data Engineer & ETL Developer</title>
+    <meta name="description"
+        content="Portfolio of Nada Ashraf - Data Engineer & ETL Developer specializing in Azure Data Factory, SSIS, SQL Server, and Big Data Engineering." />
+
+    <!-- Prevent FOUC: Read theme immediately -->
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light' || (!savedTheme && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+                document.documentElement.classList.add('light');
+                document.documentElement.classList.remove('dark');
+            } else {
+                document.documentElement.classList.add('dark');
+                document.documentElement.classList.remove('light');
+            }
+        })();
+    </script>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            DEFAULT: 'rgb(var(--color-navy) / <alpha-value>)',
+                            dark: 'rgb(var(--color-navy-dark) / <alpha-value>)',
+                            surface: 'rgb(var(--color-navy-surface) / <alpha-value>)',
+                            card: 'rgb(var(--color-navy-card) / <alpha-value>)',
+                            border: 'rgb(var(--color-navy-border) / <alpha-value>)',
+                        },
+                        teal: {
+                            DEFAULT: 'rgb(var(--color-teal) / <alpha-value>)',
+                            light: 'rgb(var(--color-teal-light) / <alpha-value>)',
+                            dark: 'rgb(var(--color-teal-dark) / <alpha-value>)',
+                            glow: 'var(--color-teal-glow)',
+                        },
+                        sand: {
+                            DEFAULT: 'rgb(var(--color-sand) / <alpha-value>)',
+                            light: 'rgb(var(--color-sand-light) / <alpha-value>)',
+                            muted: 'rgb(var(--color-sand-muted) / <alpha-value>)',
+                            card: 'var(--color-sand-card)',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <style>
+        :root, html.dark {
+            --color-navy: 47 72 109;            /* #2f486d: slate navy secondary pills & buttons */
+            --color-navy-dark: 24 35 52;        /* #182334: deep midnight slate body background */
+            --color-navy-surface: 62 92 135;    /* #3E5C87: button & card hover states */
+            --color-navy-card: 34 49 72;        /* #223148: deep midnight slate cards */
+            --color-navy-border: 52 76 110;     /* #344C6E: subtle slate navy border */
+
+            --color-teal: 210 231 184;          /* #d2e7b8: fresh sage green accent for text & icons */
+            --color-teal-light: 224 240 204;    /* #E0F0CC: bright sage hover */
+            --color-teal-dark: 176 205 142;     /* #B0CD8E: deeper sage */
+            --color-teal-glow: rgba(210, 231, 184, 0.45);
+
+            --color-sand: 243 234 224;          /* #f3eae0: warm linen cream primary text */
+            --color-sand-light: 34 49 72;       /* #223148: dark navy text on sage buttons for max contrast */
+            --color-sand-muted: 175 190 205;    /* soft muted slate text */
+            --color-sand-card: rgba(210, 231, 184, 0.08); /* #d2e7b8 soft tint */
+
+            --bg-body: #182334;
+            --text-body: #f3eae0;
+            --grid-line: rgba(210, 231, 184, 0.06);
+            --glow-1: rgba(210, 231, 184, 0.18);
+            --glow-2: rgba(47, 72, 109, 0.35);
+        }
+
+        html.light {
+            --color-navy: 210 231 184;          /* #d2e7b8: fresh sage green pills & badges */
+            --color-navy-dark: 243 234 224;     /* #f3eae0: warm linen cream body & navbar */
+            --color-navy-surface: 195 218 166;  /* #C3DAA6: soft sage hover */
+            --color-navy-card: 255 255 255;     /* #FFFFFF: crisp white cards */
+            --color-navy-border: 218 206 193;   /* #DACEC1: clean warm border */
+
+            --color-teal: 47 72 109;            /* #2f486d: slate navy signature accent */
+            --color-teal-light: 34 49 72;       /* #223148: deep midnight navy hover */
+            --color-teal-dark: 24 35 52;        /* #182334: dark navy */
+            --color-teal-glow: rgba(47, 72, 109, 0.25);
+
+            --color-sand: 34 49 72;             /* #223148: deep midnight slate text */
+            --color-sand-light: 243 234 224;    /* #f3eae0: warm cream text on navy buttons */
+            --color-sand-muted: 85 102 122;     /* readable slate navy secondary text */
+            --color-sand-card: rgba(47, 72, 109, 0.04);
+
+            --bg-body: #f3eae0;
+            --text-body: #223148;
+            --grid-line: rgba(47, 72, 109, 0.06);
+            --glow-1: rgba(210, 231, 184, 0.30);
+            --glow-2: rgba(47, 72, 109, 0.12);
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-body);
+        }
+
+        /* Smooth Theme Switch Transition */
+        .theme-transition,
+        .theme-transition *,
+        .theme-transition *:before,
+        .theme-transition *:after {
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.2s ease, fill 0.2s ease, stroke 0.2s ease, box-shadow 0.3s ease !important;
+            transition-delay: 0 !important;
+        }
+
+        .custom-grid {
+            background-size: 36px 36px;
+            background-image:
+                linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+        }
+
+        .teal-glow {
+            box-shadow: 0 0 35px -5px var(--color-teal-glow);
+        }
+
+        .sand-glow {
+            box-shadow: 0 0 25px -5px var(--color-sand-card);
+        }
+
+        /* Light/Dark Mode Icon Visibility */
+        html.dark .theme-icon-sun { display: none !important; }
+        html.dark .theme-icon-moon { display: inline-block !important; }
+        html.light .theme-icon-sun { display: inline-block !important; }
+        html.light .theme-icon-moon { display: none !important; }
+
+        /* Light Mode Shadow and Border Refinements */
+        html.light .bg-navy-card {
+            box-shadow: 0 4px 20px -2px rgba(34, 49, 72, 0.06), 0 2px 6px -1px rgba(34, 49, 72, 0.03);
+        }
+        html.light .bg-navy-card:hover {
+            box-shadow: 0 12px 30px -4px rgba(47, 72, 109, 0.15), 0 4px 10px -2px rgba(34, 49, 72, 0.04);
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased selection:bg-teal selection:text-white">
+
+    <!-- Floating Toast Notification -->
+    <div id="toast"
+        class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-teal text-sand-light px-5 py-3 rounded-xl shadow-2xl border border-teal-light flex items-center gap-3">
+        <i class="fa-solid fa-check-circle text-lg"></i>
+        <span id="toast-msg">Copied to clipboard!</span>
+    </div>
+
+    <!-- Background Grids & Ambient Glows -->
+    <div class="fixed inset-0 custom-grid pointer-events-none z-0"></div>
+    <div class="fixed top-0 left-1/4 w-[600px] h-[600px] rounded-full blur-[140px] pointer-events-none transition-colors duration-500"
+        style="background-color: var(--glow-1);">
+    </div>
+    <div class="fixed bottom-0 right-10 w-[500px] h-[500px] rounded-full blur-[140px] pointer-events-none transition-colors duration-500"
+        style="background-color: var(--glow-2);">
+    </div>
+
+    <!-- NAVIGATION BAR -->
+    <header class="sticky top-0 z-40 backdrop-blur-md bg-navy-dark/90 border-b border-navy-border/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div
+                    class="w-11 h-11 rounded-xl bg-gradient-to-tr from-navy to-navy-surface flex items-center justify-center font-mono font-bold text-teal border border-teal/50 shadow-lg group-hover:scale-105 transition-transform">
+                    NA
+                </div>
+                <div>
+                    <span class="font-bold text-lg text-sand tracking-tight block">Nada Ashraf</span>
+                    <span class="text-xs text-teal font-mono">Data Engineer / ETL Developer</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-sand/80">
+                <a href="#about" class="hover:text-teal transition-colors">About</a>
+                <a href="#skills" class="hover:text-teal transition-colors">Skills & Stack</a>
+                <a href="#projects" class="hover:text-teal transition-colors">Projects</a>
+                <a href="#experience" class="hover:text-teal transition-colors">Experience</a>
+                <a href="#education" class="hover:text-teal transition-colors">Education</a>
+                <a href="#contact" class="hover:text-teal transition-colors">Contact</a>
+            </nav>
+
+            <!-- Action Buttons -->
+            <div class="hidden sm:flex items-center gap-3">
+                <!-- Desktop Theme Toggle -->
+                <button id="theme-toggle-btn"
+                    class="p-2.5 rounded-lg bg-navy hover:bg-navy-surface text-sand hover:text-teal transition-all border border-navy-border flex items-center justify-center relative group"
+                    title="Toggle Light / Dark Mode" aria-label="Toggle theme">
+                    <i class="fa-solid fa-sun text-lg text-amber-500 theme-icon-sun group-hover:rotate-45 transition-transform"></i>
+                    <i class="fa-solid fa-moon text-lg text-teal theme-icon-moon group-hover:-rotate-12 transition-transform"></i>
+                </button>
+                <a href="https://github.com/nada-ashraf10" target="_blank" rel="noopener noreferrer"
+                    class="p-2.5 rounded-lg bg-navy hover:bg-navy-surface text-sand/90 hover:text-white transition-all border border-navy-border"
+                    title="GitHub">
+                    <i class="fa-brands fa-github text-lg"></i>
+                </a>
+                <a href="https://linkedin.com/in/nadaa-ashraff" target="_blank" rel="noopener noreferrer"
+                    class="p-2.5 rounded-lg bg-navy hover:bg-navy-surface text-sand/90 hover:text-white transition-all border border-navy-border"
+                    title="LinkedIn">
+                    <i class="fa-brands fa-linkedin text-lg"></i>
+                </a>
+                <a href="#contact"
+                    class="px-5 py-2.5 text-sm font-semibold rounded-lg bg-teal hover:bg-teal-light text-sand-light shadow-lg transition-all">
+                    Get In Touch
+                </a>
+            </div>
+
+            <!-- Mobile Controls -->
+            <div class="flex items-center gap-2 sm:hidden">
+                <button id="theme-toggle-mobile-top"
+                    class="p-2 rounded-lg bg-navy text-sand hover:text-teal border border-navy-border flex items-center justify-center"
+                    title="Toggle theme" aria-label="Toggle theme">
+                    <i class="fa-solid fa-sun text-base text-amber-500 theme-icon-sun"></i>
+                    <i class="fa-solid fa-moon text-base text-teal theme-icon-moon"></i>
+                </button>
+                <button id="mobile-menu-btn" class="p-2 text-sand/80 hover:text-teal" aria-label="Open navigation menu">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+            <!-- Mobile Hamburger for screens between sm and md (tablet) -->
+            <button id="mobile-menu-btn-tablet" class="hidden sm:inline-flex md:hidden p-2 text-sand/80 hover:text-teal" aria-label="Open navigation menu">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-navy-dark border-b border-navy-border px-6 py-4 space-y-3">
+            <a href="#about" class="block text-sand/80 hover:text-teal py-1">About</a>
+            <a href="#skills" class="block text-sand/80 hover:text-teal py-1">Skills & Stack</a>
+            <a href="#projects" class="block text-sand/80 hover:text-teal py-1">Projects</a>
+            <a href="#experience" class="block text-sand/80 hover:text-teal py-1">Experience</a>
+            <a href="#education" class="block text-sand/80 hover:text-teal py-1">Education</a>
+            <a href="#contact" class="block text-teal font-semibold pt-2">Contact</a>
+            <!-- Mobile Drawer Theme Switcher -->
+            <div class="pt-3 border-t border-navy-border/70 flex items-center justify-between">
+                <span class="text-sm font-medium text-sand/80">Theme</span>
+                <button id="theme-toggle-mobile-drawer"
+                    class="px-3.5 py-1.5 rounded-lg bg-navy text-sand border border-navy-border flex items-center gap-2 text-xs font-semibold hover:border-teal transition-all">
+                    <i class="fa-solid fa-sun text-amber-500 theme-icon-sun"></i>
+                    <i class="fa-solid fa-moon text-teal theme-icon-moon"></i>
+                    <span id="theme-label-mobile">Dark Mode</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative z-10">
+
+        <!-- HERO / INTRO SECTION -->
+        <section
+            class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-12">
+            <!-- Left Content -->
+            <div class="flex-1 text-center lg:text-left">
+                <div
+                    class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-navy border border-teal/40 text-teal text-xs font-mono mb-6 shadow-lg">
+                    <span class="w-2.5 h-2.5 rounded-full bg-teal animate-ping"></span>
+                    <span class="font-semibold text-sand">Open for Freelance</span>
+                    <span class="text-teal/60">·</span>
+                    <span class="text-sand/80">Data Engineer &amp; ETL Developer</span>
+                </div>
+
+                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-sand leading-tight mb-6">
+                    Building Resilient, High-Throughput <br class="hidden sm:inline" />
+                    <span class="text-teal">Data Pipelines & Cloud ETL</span>
+                </h1>
+
+                <p class="text-base sm:text-lg text-sand/85 max-w-2xl mx-auto lg:mx-0 mb-6 leading-relaxed">
+                    Hello! I'm <span class="text-sand font-bold">Nada Ashraf</span>, specializing in end-to-end data
+                    ingestion, schema modeling, and robust data pipeline orchestration across <span
+                        class="text-teal font-semibold">Azure Data Factory</span>, <span
+                        class="text-teal font-semibold">SSIS</span>, and <span class="text-teal font-semibold">SQL
+                        Server</span>.
+                </p>
+
+                <!-- Freelance Notice Banner -->
+                <div class="mb-8 p-3.5 rounded-xl bg-navy/60 border border-teal/30 flex items-center justify-center lg:justify-start gap-3 max-w-xl mx-auto lg:mx-0">
+                    <span class="w-8 h-8 rounded-lg bg-teal/15 text-teal flex items-center justify-center text-sm shrink-0">
+                        <i class="fa-solid fa-bolt"></i>
+                    </span>
+                    <span class="text-xs sm:text-sm text-sand/90">
+                        <strong class="text-teal font-semibold">Available for Freelance:</strong> Custom ETL workflows, pipeline optimization &amp; cloud data engineering projects.
+                    </span>
+                </div>
+
+                <!-- CTAs -->
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-8">
+                    <a href="#projects"
+                        class="px-7 py-3.5 rounded-xl font-semibold bg-teal hover:bg-teal-light text-sand-light shadow-xl transition-all flex items-center gap-2">
+                        <span>View 4 GitHub Projects</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                    <a href="#contact"
+                        class="px-6 py-3.5 rounded-xl font-semibold bg-navy hover:bg-navy-surface text-sand border border-teal/50 hover:border-teal transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-handshake text-teal"></i>
+                        <span>Hire for Freelance</span>
+                    </a>
+                    <button onclick="window.print()"
+                        class="px-5 py-3.5 rounded-xl font-semibold bg-navy hover:bg-navy-surface text-sand border border-navy-border transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-file-pdf text-teal"></i>
+                        <span>CV</span>
+                    </button>
+                    <a href="https://github.com/nada-ashraf10" target="_blank" rel="noopener noreferrer"
+                        class="p-3.5 rounded-xl font-semibold bg-navy hover:bg-navy-surface text-sand border border-navy-border transition-all flex items-center justify-center"
+                        title="GitHub">
+                        <i class="fa-brands fa-github text-lg text-teal"></i>
+                    </a>
+                </div>
+
+                <!-- Quick Contacts -->
+                <div
+                    class="flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs sm:text-sm text-sand/70 pt-4 border-t border-navy-border/60">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-location-dot text-teal"></i>
+                        <span>Cairo, Egypt</span>
+                    </div>
+                    <div class="flex items-center gap-2 cursor-pointer hover:text-sand"
+                        onclick="copyText('nada666ahraff67@gmail.com', 'Email copied to clipboard!')">
+                        <i class="fa-solid fa-envelope text-teal"></i>
+                        <span>nada666ahraff67@gmail.com</span>
+                        <i class="fa-regular fa-copy text-xs text-sand/50"></i>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-phone text-teal"></i>
+                        <a href="tel:01227768172" class="hover:text-sand">01227768172</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Photo Profile -->
+            <div class="flex-shrink-0 relative group">
+                <!-- Glowing Ring in Sage/Navy -->
+                <div
+                    class="absolute -inset-2 bg-gradient-to-tr from-teal to-navy rounded-3xl blur-xl opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
+                </div>
+
+                <div
+                    class="relative w-64 h-80 sm:w-72 sm:h-96 rounded-2xl overflow-hidden border-2 border-teal/70 bg-navy shadow-2xl cursor-pointer"
+                    onclick="openPhotoModal()"
+                    title="Click to view full photo">
+                    <img src="profile.jpg" alt="Nada Ashraf"
+                        onerror="this.src='C:/Users/Cyber/.gemini/antigravity/brain/0fd96438-51ab-4793-acc6-9d945b693959/.user_uploaded/media_1789235196457.jpg'"
+                        class="w-full h-full object-cover transition-transform duration-700 ease-out transform scale-[1.65] origin-[50%_35%] group-hover:scale-[1.85]" />
+                    
+                    <!-- Zoom badge overlay on hover -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-3.5">
+                        <span class="text-[11px] font-mono text-sand-light bg-black/70 px-3 py-1 rounded-full backdrop-blur-md flex items-center gap-1.5 border border-teal/50 shadow-lg">
+                            <i class="fa-solid fa-magnifying-glass-plus text-teal-light"></i>
+                            <span>Click to Zoom</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Floating Badge -->
+                <div
+                    class="absolute -bottom-4 -left-4 bg-navy-card/95 border border-teal/60 rounded-xl px-4 py-2.5 shadow-xl backdrop-blur-md flex items-center gap-2.5 z-10">
+                    <div class="w-3 h-3 rounded-full bg-teal animate-ping"></div>
+                    <div>
+                        <div class="text-[10px] text-teal font-mono uppercase tracking-wider font-semibold">Availability</div>
+                        <div class="text-xs font-bold text-sand flex items-center gap-1.5">
+                            <span>Open for Freelance</span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-teal"></span>
+                            <span class="text-[11px] font-normal text-sand/80">Full-Time</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 1: ABOUT ME -->
+        <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="text-teal font-mono text-xs uppercase tracking-widest">Introduction</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-sand mt-2">About Me</h2>
+                <div class="w-16 h-1 bg-teal mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+                <div
+                    class="lg:col-span-2 bg-navy-card border border-navy-border rounded-2xl p-7 sm:p-9 shadow-xl flex flex-col justify-between">
+                    <div class="space-y-4 text-sand/90 text-sm sm:text-base leading-relaxed">
+                        <p>
+                            I am a results-driven <strong class="text-sand font-semibold">Data Engineer / ETL
+                                Developer</strong> specializing in designing, implementing, and optimizing robust data
+                            pipelines and enterprise integration solutions.
+                        </p>
+                        <p>
+                            Proficient in orchestrating automated cloud and hybrid workflows using <span
+                                class="text-teal font-medium">Azure Data Factory</span>, <span
+                                class="text-teal font-medium">SSIS</span>, and <span class="text-teal font-medium">SQL
+                                Server</span>. Experienced in raw data ingestion, schema design, and validating strict
+                            data quality standards to deliver clean and structured datasets for downstream business
+                            intelligence and analytics.
+                        </p>
+                        <p>
+                            Whether dealing with high-volume telecom signal parsing, cloud sales pipelines, or
+                            relational database optimization, I focus on query performance, resilient error handling,
+                            and zero data leakage.
+                        </p>
+                    </div>
+
+                    <!-- Key Highlights -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8 pt-6 border-t border-navy-border">
+                        <div class="bg-navy p-3 rounded-xl border border-teal/40 text-center">
+                            <div class="text-teal font-bold font-mono text-base">Freelance</div>
+                            <div class="text-[11px] text-sand/80 mt-0.5 font-medium">Ready for Hire</div>
+                        </div>
+                        <div class="bg-navy p-3 rounded-xl border border-navy-border/70 text-center">
+                            <div class="text-teal font-bold font-mono text-base">DEPI</div>
+                            <div class="text-[11px] text-sand/70 mt-0.5">Fellow Engineer</div>
+                        </div>
+                        <div class="bg-navy p-3 rounded-xl border border-navy-border/70 text-center">
+                            <div class="text-teal font-bold font-mono text-base">Cloud + Hybrid</div>
+                            <div class="text-[11px] text-sand/70 mt-0.5">Azure &amp; On-Prem</div>
+                        </div>
+                        <div class="bg-navy p-3 rounded-xl border border-navy-border/70 text-center">
+                            <div class="text-teal font-bold font-mono text-base">AAST</div>
+                            <div class="text-[11px] text-sand/70 mt-0.5">Comp Science</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pipeline Workflow Card -->
+                <div class="bg-navy-card border border-navy-border rounded-2xl p-7 flex flex-col justify-between">
+                    <h3 class="text-base font-bold text-sand mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-diagram-project text-teal"></i>
+                        <span>Engineering Pillars</span>
+                    </h3>
+                    <ul class="space-y-4 text-xs sm:text-sm text-sand/80">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-teal mt-1"></i>
+                            <div>
+                                <strong class="text-sand block">Automated Ingestion</strong>
+                                CSV, Relational DBs, APIs, and raw cloud storage staging.
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-teal mt-1"></i>
+                            <div>
+                                <strong class="text-sand block">Data Quality & Validation</strong>
+                                Strict schema validation, rejected record routing, and audit logs.
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-teal mt-1"></i>
+                            <div>
+                                <strong class="text-sand block">Performance Tuning</strong>
+                                Query optimization, partitioned datasets, and stored procedures.
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="mt-6 pt-4 border-t border-navy-border text-center">
+                        <a href="#contact"
+                            class="text-xs font-mono text-teal hover:underline flex items-center justify-center gap-1">
+                            <span>Discuss an architecture</span>
+                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: SKILLS & TECH STACK (ORGANIZED LOGICALLY) -->
+        <section id="skills" class="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+            <div class="text-center mb-14">
+                <span class="text-teal font-mono text-xs uppercase tracking-widest">Capabilities</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-sand mt-2">Skills & Tech Stack</h2>
+                <p class="text-sand/70 max-w-lg mx-auto text-sm mt-2">
+                    Organized logically across data engineering layers, cloud infrastructure, databases, and analytics.
+                </p>
+                <div class="w-16 h-1 bg-teal mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Stack 1: Data Engineering & ETL -->
+                <div class="bg-navy-card border border-navy-border hover:border-teal/60 rounded-2xl p-6 transition-all">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-teal/15 text-teal flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sand text-base">Data Engineering & ETL</h3>
+                            <span class="text-[11px] text-teal font-mono">Pipelines & Workflows</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge">ETL / ELT</span>
+                        <span class="skill-badge">Data Pipelines</span>
+                        <span class="skill-badge">Azure Data Factory (ADF)</span>
+                        <span class="skill-badge">SSIS</span>
+                        <span class="skill-badge">Apache Spark</span>
+                        <span class="skill-badge">Apache Airflow</span>
+                        <span class="skill-badge">Apache Kafka</span>
+                        <span class="skill-badge">Hadoop</span>
+                    </div>
+                </div>
+
+                <!-- Stack 2: Cloud & Modern Platforms -->
+                <div class="bg-navy-card border border-navy-border hover:border-teal/60 rounded-2xl p-6 transition-all">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-teal/15 text-teal flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-cloud"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sand text-base">Cloud & Platforms</h3>
+                            <span class="text-[11px] text-teal font-mono">Infrastructure & Big Data</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge">Microsoft Azure</span>
+                        <span class="skill-badge">Google Cloud (GCP)</span>
+                        <span class="skill-badge">Azure Blob Storage</span>
+                        <span class="skill-badge">Azure Synapse</span>
+                        <span class="skill-badge">Databricks</span>
+                        <span class="skill-badge">Microsoft Fabric</span>
+                        <span class="skill-badge">Azure Event Hubs</span>
+                        <span class="skill-badge">Stream Analytics</span>
+                    </div>
+                </div>
+
+                <!-- Stack 3: Databases & Data Warehousing -->
+                <div class="bg-navy-card border border-navy-border hover:border-teal/60 rounded-2xl p-6 transition-all">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-teal/15 text-teal flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sand text-base">Databases & DWH</h3>
+                            <span class="text-[11px] text-teal font-mono">Storage & Modeling</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge">SQL Server</span>
+                        <span class="skill-badge">PostgreSQL</span>
+                        <span class="skill-badge">MySQL</span>
+                        <span class="skill-badge">SQLite</span>
+                        <span class="skill-badge">Data Warehousing (DWH)</span>
+                        <span class="skill-badge">Schema Design</span>
+                        <span class="skill-badge">Stored Procedures</span>
+                        <span class="skill-badge">Query Optimization</span>
+                    </div>
+                </div>
+
+                <!-- Stack 4: Programming & Data Libraries -->
+                <div class="bg-navy-card border border-navy-border hover:border-teal/60 rounded-2xl p-6 transition-all">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-teal/15 text-teal flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sand text-base">Programming & Libraries</h3>
+                            <span class="text-[11px] text-teal font-mono">Languages & Scripting</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge">Python</span>
+                        <span class="skill-badge">SQL</span>
+                        <span class="skill-badge">Pandas</span>
+                        <span class="skill-badge">NumPy</span>
+                        <span class="skill-badge">Matplotlib</span>
+                        <span class="skill-badge">Dash & Flask</span>
+                        <span class="skill-badge">Java</span>
+                        <span class="skill-badge">JavaScript</span>
+                        <span class="skill-badge">C / C++</span>
+                    </div>
+                </div>
+
+                <!-- Stack 5: BI & DevOps Tools -->
+                <div class="bg-navy-card border border-navy-border hover:border-teal/60 rounded-2xl p-6 transition-all">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-teal/15 text-teal flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sand text-base">BI & DevOps</h3>
+                            <span class="text-[11px] text-teal font-mono">Analytics & Operations</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge">Microsoft Power BI</span>
+                        <span class="skill-badge">Git & GitHub</span>
+                        <span class="skill-badge">Docker</span>
+                        <span class="skill-badge">CI/CD</span>
+                        <span class="skill-badge">n8n Automation</span>
+                    </div>
+                </div>
+
+                <!-- Stack 6: Data Quality & Best Practices -->
+                <div class="bg-navy-card border border-navy-border hover:border-teal/60 rounded-2xl p-6 transition-all">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-teal/15 text-teal flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sand text-base">Data Quality & Strategy</h3>
+                            <span class="text-[11px] text-teal font-mono">Standards & Resilience</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge">Rejected Record Routing</span>
+                        <span class="skill-badge">Data Cleansing</span>
+                        <span class="skill-badge">Error Handling</span>
+                        <span class="skill-badge">Backup Strategies</span>
+                        <span class="skill-badge">Partitioning</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 3: THE 4 GITHUB PROJECTS -->
+        <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+            <div class="text-center mb-14">
+                <span class="text-teal font-mono text-xs uppercase tracking-widest">Portfolio Showcase</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-sand mt-2">Featured Projects</h2>
+                <p class="text-sand/70 max-w-xl mx-auto text-sm mt-2">
+                    Direct from my GitHub repository (<a href="https://github.com/nada-ashraf10" target="_blank"
+                        class="text-teal underline font-mono">nada-ashraf10</a>), featuring production-grade ETL
+                    pipelines and data modeling.
+                </p>
+                <div class="w-16 h-1 bg-teal mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <!-- PROJECT 1: Azure-Data-Factory-Sales-Pipeline -->
+                <div
+                    class="bg-navy-card border border-navy-border hover:border-teal rounded-2xl p-7 flex flex-col justify-between transition-all group hover:shadow-2xl">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-navy text-teal flex items-center justify-center text-xl border border-navy-border">
+                                <i class="fa-solid fa-cloud-arrow-down"></i>
+                            </div>
+                            <a href="https://github.com/nada-ashraf10/Azure-Data-Factory-Sales-Pipeline" target="_blank" rel="noopener noreferrer"
+                                class="text-xs font-mono text-sand/70 hover:text-teal flex items-center gap-1.5 bg-navy px-3 py-1.5 rounded-lg border border-navy-border">
+                                <i class="fa-brands fa-github text-teal"></i>
+                                <span>GitHub Repo</span>
+                            </a>
+                        </div>
+
+                        <h3 class="text-xl font-bold font-mono tracking-tight text-sand group-hover:text-teal transition-colors">
+                            Azure-Data-Factory-Sales-Pipeline
+                        </h3>
+                        <p class="text-xs font-mono text-teal mt-1 mb-4">
+                            Azure Data Factory · Azure Data Flow · Blob Storage · CSV
+                        </p>
+                        <p class="text-sand/80 text-sm leading-relaxed mb-5">
+                            ETL pipeline using Azure Data Factory &amp; Data Flow to process raw sales data, calculate total revenue per order, and load enriched results into Azure Blob Storage.
+                        </p>
+
+                        <ul class="space-y-2 text-xs text-sand/70 mb-6">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-chevron-right text-teal mt-0.5 text-[10px]"></i>
+                                <span>Built automated ADF triggers to ingest raw CSV sales data reliably.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-chevron-right text-teal mt-0.5 text-[10px]"></i>
+                                <span>Engineered mapping data flows for total revenue per order calculations &amp; dynamic dataset partitioning.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-chevron-right text-teal mt-0.5 text-[10px]"></i>
+                                <span>Configured Azure Blob Storage for cost-effective raw file staging and processed data delivery.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-4 border-t border-navy-border flex flex-wrap gap-2">
+                        <span class="project-tag">Azure Data Factory</span>
+                        <span class="project-tag">Data Flow</span>
+                        <span class="project-tag">Blob Storage</span>
+                        <span class="project-tag">Cloud ETL</span>
+                    </div>
+                </div>
+
+                <!-- PROJECT 2: Telecom-ETL-SSIS-Project -->
+                <div
+                    class="bg-navy-card border border-navy-border hover:border-teal rounded-2xl p-7 flex flex-col justify-between transition-all group hover:shadow-2xl">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-navy text-teal flex items-center justify-center text-xl border border-navy-border">
+                                <i class="fa-solid fa-tower-cell"></i>
+                            </div>
+                            <a href="https://github.com/nada-ashraf10/Telecom-ETL-SSIS-Project" target="_blank" rel="noopener noreferrer"
+                                class="text-xs font-mono text-sand/70 hover:text-teal flex items-center gap-1.5 bg-navy px-3 py-1.5 rounded-lg border border-navy-border">
+                                <i class="fa-brands fa-github text-teal"></i>
+                                <span>GitHub Repo</span>
+                            </a>
+                        </div>
+
+                        <h3 class="text-xl font-bold font-mono tracking-tight text-sand group-hover:text-teal transition-colors">
+                            Telecom-ETL-SSIS-Project
+                        </h3>
+                        <p class="text-xs font-mono text-teal mt-1 mb-4">
+                            SSIS · SQL Server · CSV · Git · Data Quality
+                        </p>
+                        <p class="text-sand/80 text-sm leading-relaxed mb-5">
+                            ETL process for telecom CSVs using SSIS. Features IMSI joining, IMEI parsing into TAC/SNR, and timestamp validation. Includes data quality rules, rejected record handling, and package workflows for automated data splitting &amp; backups.
+                        </p>
+
+                        <ul class="space-y-2 text-xs text-sand/70 mb-6">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-chevron-right text-teal mt-0.5 text-[10px]"></i>
+                                <span>Complex telecom transformations: IMSI joining and IMEI parsing into TAC/SNR components.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-chevron-right text-teal mt-0.5 text-[10px]"></i>
+                                <span>Enforced strict timestamp validation and custom business data quality rules.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-chevron-right text-teal mt-0.5 text-[10px]"></i>
+                                <span>Automated rejected record routing and package workflows for automated data splitting &amp; backups.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-4 border-t border-navy-border flex flex-wrap gap-2">
+                        <span class="project-tag">SSIS</span>
+                        <span class="project-tag">SQL Server</span>
+                        <span class="project-tag">IMSI / IMEI</span>
+                        <span class="project-tag">Data Quality</span>
+                    </div>
+                </div>
+
+                <!-- PROJECT 3: Real-Time-E-Commerce -->
+                <div
+                    class="bg-navy-card border border-navy-border hover:border-teal rounded-2xl p-7 flex flex-col justify-between transition-all group hover:shadow-2xl">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-navy text-teal flex items-center justify-center text-xl border border-navy-border">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <a href="https://github.com/nada-ashraf10/Real-Time-E-Commerce" target="_blank" rel="noopener noreferrer"
+                                class="text-xs font-mono text-sand/70 hover:text-teal flex items-center gap-1.5 bg-navy px-3 py-1.5 rounded-lg border border-navy-border">
+                                <i class="fa-brands fa-github text-teal"></i>
+                                <span>GitHub Repo</span>
+                            </a>
+                        </div>
+
+                        <h3 class="text-xl font-bold font-mono tracking-tight text-sand group-hover:text-teal transition-colors">
+                            Real-Time-E-Commerce
+                        </h3>
+                        <p class="text-xs font-mono text-teal mt-1 mb-4">
+                            Azure Event Hubs · Databricks · Delta Lake · PySpark · Power BI
+                        </p>
+                        <p class="text-sand/80 text-sm leading-relaxed mb-5">
+                            End-to-end real-time e-commerce pipeline using Azure Event Hubs, Databricks, Delta Lake &amp; Power BI. Processes live events with PySpark transformations into curated analytics dashboards.
+                        </p>
+
+                        <ul class="space-y-2 text-xs text-sand/70 mb-6">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-chevron-right text-teal mt-0.5 text-[10px]"></i>
+                                <span>Ingests high-velocity streaming order &amp; clickstream events through Azure Event Hubs.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-chevron-right text-teal mt-0.5 text-[10px]"></i>
+                                <span>Utilized PySpark on Azure Databricks for distributed real-time data cleansing and windowed aggregations.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-chevron-right text-teal mt-0.5 text-[10px]"></i>
+                                <span>Structured storage in Delta Lake integrated with live Power BI executive dashboards.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-4 border-t border-navy-border flex flex-wrap gap-2">
+                        <span class="project-tag">Real-Time</span>
+                        <span class="project-tag">Azure Event Hubs</span>
+                        <span class="project-tag">Databricks</span>
+                        <span class="project-tag">Delta Lake</span>
+                        <span class="project-tag">Power BI</span>
+                    </div>
+                </div>
+
+                <!-- PROJECT 4: wuzzuf-airflow-pipeline -->
+                <div
+                    class="bg-navy-card border border-navy-border hover:border-teal rounded-2xl p-7 flex flex-col justify-between transition-all group hover:shadow-2xl">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-navy text-teal flex items-center justify-center text-xl border border-navy-border">
+                                <i class="fa-solid fa-wind"></i>
+                            </div>
+                            <a href="https://github.com/nada-ashraf10/wuzzuf-airflow-pipeline" target="_blank" rel="noopener noreferrer"
+                                class="text-xs font-mono text-sand/70 hover:text-teal flex items-center gap-1.5 bg-navy px-3 py-1.5 rounded-lg border border-navy-border">
+                                <i class="fa-brands fa-github text-teal"></i>
+                                <span>GitHub Repo</span>
+                            </a>
+                        </div>
+
+                        <h3 class="text-xl font-bold font-mono tracking-tight text-sand group-hover:text-teal transition-colors">
+                            wuzzuf-airflow-pipeline
+                        </h3>
+                        <p class="text-xs font-mono text-teal mt-1 mb-4">
+                            Apache Airflow · Python · Docker · SQLite · Pandas · Automation
+                        </p>
+                        <p class="text-sand/80 text-sm leading-relaxed mb-5">
+                            Automated job scraping pipeline for Wuzzuf using Apache Airflow &amp; Docker. Scrapes tech jobs hourly, deduplicates against SQLite, and sends real-time HTML email alerts.
+                        </p>
+
+                        <ul class="space-y-2 text-xs text-sand/70 mb-6">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-chevron-right text-teal mt-0.5 text-[10px]"></i>
+                                <span>Orchestrated automated DAG schedules running in a containerized Docker Airflow environment.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-chevron-right text-teal mt-0.5 text-[10px]"></i>
+                                <span>Scraped and parsed employment postings using Python, BeautifulSoup, and Pandas.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-chevron-right text-teal mt-0.5 text-[10px]"></i>
+                                <span>Enforced deduplication against SQLite and dispatched automated HTML notifications via SMTP.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-4 border-t border-navy-border flex flex-wrap gap-2">
+                        <span class="project-tag">Apache Airflow</span>
+                        <span class="project-tag">Docker</span>
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">SQLite</span>
+                        <span class="project-tag">Automation</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: WORK & EXPERIENCE -->
+        <section id="experience" class="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+            <div class="text-center mb-14">
+                <span class="text-teal font-mono text-xs uppercase tracking-widest">Career Journey</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-sand mt-2">Work & Experience</h2>
+                <div class="w-16 h-1 bg-teal mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div class="relative border-l-2 border-teal/40 ml-4 md:ml-36 space-y-12">
+
+                <!-- DEPI EXPERIENCE -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <!-- Timeline Node -->
+                    <div
+                        class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-teal border-4 border-navy-dark group-hover:scale-125 transition-transform shadow-md">
+                    </div>
+
+                    <!-- Date for Desktop -->
+                    <div class="md:absolute md:-left-40 md:top-1 text-xs font-mono text-teal md:w-32 md:text-right">
+                        Nov 2025 – Jul 2026
+                    </div>
+
+                    <div
+                        class="bg-navy-card border border-navy-border rounded-2xl p-6 sm:p-8 hover:border-teal/60 transition-colors shadow-xl">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                            <h3 class="text-xl font-bold text-sand">Data Engineer / ETL Developer</h3>
+                            <span
+                                class="px-3 py-1 rounded-full bg-navy text-teal text-xs font-mono border border-teal/30">
+                                Egypt
+                            </span>
+                        </div>
+
+                        <h4 class="text-teal font-semibold text-sm mb-5">
+                            Digital Egypt Pioneers Initiative (DEPI)
+                        </h4>
+
+                        <ul class="space-y-3 text-sm text-sand/85">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-teal mt-1 text-xs"></i>
+                                <span>Engineered end-to-end <strong>ETL/ELT pipelines</strong> to ingest, transform, and
+                                    load large datasets from heterogeneous sources into structured relational
+                                    databases.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-teal mt-1 text-xs"></i>
+                                <span>Developed <strong>stored procedures, views, and complex SQL queries</strong> in
+                                    SQL Server to support business logic and clean incoming raw files.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-teal mt-1 text-xs"></i>
+                                <span>Set up <strong>validation rules, error handling</strong>, and backup strategies to
+                                    guarantee pipeline resilience and data accuracy.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-teal mt-1 text-xs"></i>
+                                <span>Collaborative team member focused on <strong>optimizing slow-running
+                                        queries</strong> and updating databases to improve overall system
+                                    throughput.</span>
+                            </li>
+                        </ul>
+
+                        <div class="flex flex-wrap gap-2 mt-6 pt-5 border-t border-navy-border">
+                            <span
+                                class="text-xs px-2.5 py-1 rounded bg-navy text-sand/80 font-mono border border-navy-border">ETL
+                                / ELT</span>
+                            <span
+                                class="text-xs px-2.5 py-1 rounded bg-navy text-sand/80 font-mono border border-navy-border">SQL
+                                Server</span>
+                            <span
+                                class="text-xs px-2.5 py-1 rounded bg-navy text-sand/80 font-mono border border-navy-border">Stored
+                                Procedures</span>
+                            <span
+                                class="text-xs px-2.5 py-1 rounded bg-navy text-sand/80 font-mono border border-navy-border">Query
+                                Optimization</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 5: EDUCATION -->
+        <section id="education" class="py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="text-teal font-mono text-xs uppercase tracking-widest">Academic Background</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-sand mt-2">Education</h2>
+                <div class="w-16 h-1 bg-teal mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div
+                class="bg-navy-card border border-navy-border rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 hover:border-teal/60 transition-colors shadow-xl">
+                <div class="flex items-start gap-4">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-navy text-teal flex items-center justify-center text-2xl shrink-0 border border-navy-border">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-sand">Bachelor’s Degree in Computer Science</h3>
+                        <p class="text-teal font-semibold text-sm mt-0.5">Arab Academy for Science and Technology (AAST)
+                        </p>
+                        <p class="text-xs text-sand/60 mt-1 flex items-center gap-1.5">
+                            <i class="fa-solid fa-location-dot text-teal"></i>
+                            <span>Alexandria, Egypt</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="sm:text-right shrink-0">
+                    <span class="px-3.5 py-1.5 rounded-full bg-navy text-sand font-mono text-xs border border-teal/40">
+                        2024 – 2028
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: CONTACT INFO -->
+        <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+            <div
+                class="bg-gradient-to-b from-navy-card to-navy-dark border border-teal/40 rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden shadow-2xl">
+                <div class="absolute -top-24 -right-24 w-60 h-60 bg-teal/15 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-24 -left-24 w-60 h-60 bg-navy/30 rounded-full blur-3xl"></div>
+
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-navy border border-teal/40 text-teal text-xs font-mono mb-3">
+                    <span class="w-2 h-2 rounded-full bg-teal animate-ping"></span>
+                    <span>Available for Freelance &amp; Contract Work</span>
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-sand mt-1 mb-4">Let's Work Together</h2>
+                <p class="text-sand/85 max-w-lg mx-auto text-sm sm:text-base mb-8 leading-relaxed">
+                    Looking for a dedicated <strong class="text-sand">Freelance Data Engineer</strong> to design ETL pipelines, automate data ingestion, or model cloud warehouses? I am open for client contracts, freelance projects, and full-time opportunities.
+                </p>
+
+                <!-- Direct Contact Action Buttons -->
+                <div class="flex flex-wrap items-center justify-center gap-4 mb-8">
+                    <a href="mailto:nada666ahraff67@gmail.com"
+                        class="px-7 py-3.5 rounded-xl font-semibold bg-teal hover:bg-teal-light text-sand-light shadow-xl transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Email Me</span>
+                    </a>
+                    <a href="https://linkedin.com/in/nadaa-ashraff" target="_blank" rel="noopener noreferrer"
+                        class="px-6 py-3.5 rounded-xl font-semibold bg-navy hover:bg-navy-surface text-sand border border-navy-border transition-all flex items-center gap-2">
+                        <i class="fa-brands fa-linkedin text-lg text-teal"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/nada-ashraf10" target="_blank" rel="noopener noreferrer"
+                        class="px-6 py-3.5 rounded-xl font-semibold bg-navy hover:bg-navy-surface text-sand border border-navy-border transition-all flex items-center gap-2">
+                        <i class="fa-brands fa-github text-lg text-teal"></i>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+
+                <!-- Contact Detail Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 border-t border-navy-border/70 text-xs">
+                    <div class="bg-navy/80 p-4 rounded-xl border border-navy-border flex flex-col items-center gap-1">
+                        <i class="fa-solid fa-phone text-teal text-base mb-1"></i>
+                        <span class="text-sand/60">Phone</span>
+                        <a href="tel:01227768172" class="text-sand font-mono font-bold hover:text-teal">01227768172</a>
+                    </div>
+
+                    <div class="bg-navy/80 p-4 rounded-xl border border-navy-border flex flex-col items-center gap-1 cursor-pointer hover:border-teal transition-all"
+                        onclick="copyText('nada666ahraff67@gmail.com', 'Email copied to clipboard!')">
+                        <i class="fa-solid fa-envelope text-teal text-base mb-1"></i>
+                        <span class="text-sand/60">Email (Click to Copy)</span>
+                        <span
+                            class="text-sand font-mono font-bold truncate max-w-[200px]">nada666ahraff67@gmail.com</span>
+                    </div>
+
+                    <div class="bg-navy/80 p-4 rounded-xl border border-navy-border flex flex-col items-center gap-1">
+                        <i class="fa-solid fa-location-dot text-teal text-base mb-1"></i>
+                        <span class="text-sand/60">Location</span>
+                        <span class="text-sand font-bold">Cairo, Egypt</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-navy-border/60 bg-navy-dark py-8 text-center text-xs text-sand/60">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-teal"></span>
+                <span class="text-sand/80">Nada Ashraf · Data Engineer & ETL Developer</span>
+            </div>
+            <div>
+                Engineered with Tailwind CSS · Hosted via GitHub Pages
+            </div>
+        </div>
+    </footer>
+
+    <!-- Photo Lightbox Modal -->
+    <div id="photo-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4" onclick="closePhotoModal(event)">
+        <div class="relative max-w-md w-full bg-navy-card border border-teal/50 rounded-2xl overflow-hidden shadow-2xl p-3" onclick="event.stopPropagation()">
+            <button onclick="closePhotoModal()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-black/70 hover:bg-teal text-white flex items-center justify-center transition-all" title="Close">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="w-full h-[450px] overflow-hidden rounded-xl bg-navy">
+                <img src="profile.jpg" alt="Nada Ashraf" class="w-full h-full object-cover object-center" />
+            </div>
+            <div class="pt-3 text-center">
+                <h4 class="font-bold text-sand text-base">Nada Ashraf</h4>
+                <p class="text-xs text-teal font-mono">Data Engineer / ETL Developer</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Style badges
+        document.querySelectorAll('.skill-badge').forEach(el => {
+            el.className = 'px-3 py-1.5 rounded-lg bg-navy text-sand/90 text-xs font-mono border border-navy-border hover:border-teal hover:text-teal transition-all cursor-default';
+        });
+        document.querySelectorAll('.project-tag').forEach(el => {
+            el.className = 'px-2.5 py-1 text-xs rounded bg-navy text-sand/80 font-mono border border-navy-border/80';
+        });
+
+        // Mobile nav toggles
+        const mobileMenu = document.getElementById('mobile-menu');
+        const toggleMobileMenu = () => mobileMenu && mobileMenu.classList.toggle('hidden');
+        
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        if (menuBtn) menuBtn.addEventListener('click', toggleMobileMenu);
+
+        const tabletMenuBtn = document.getElementById('mobile-menu-btn-tablet');
+        if (tabletMenuBtn) tabletMenuBtn.addEventListener('click', toggleMobileMenu);
+
+        // Copy to clipboard with Toast
+        function copyText(text, message) {
+            navigator.clipboard.writeText(text).then(() => {
+                const toast = document.getElementById('toast');
+                const toastMsg = document.getElementById('toast-msg');
+                toastMsg.textContent = message;
+                toast.classList.remove('opacity-0', 'translate-y-20');
+                toast.classList.add('opacity-100', 'translate-y-0');
+                setTimeout(() => {
+                    toast.classList.remove('opacity-100', 'translate-y-0');
+                    toast.classList.add('opacity-0', 'translate-y-20');
+                }, 2500);
+            });
+        }
+
+        // ==================== PHOTO LIGHTBOX MODAL ====================
+        function openPhotoModal() {
+            const modal = document.getElementById('photo-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        }
+
+        function closePhotoModal(event) {
+            const modal = document.getElementById('photo-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closePhotoModal();
+        });
+
+        // ==================== THEME CONTROLS (LIGHT / DARK) ====================
+        const themeToggleBtn = document.getElementById('theme-toggle-btn');
+        const themeToggleMobileTop = document.getElementById('theme-toggle-mobile-top');
+        const themeToggleMobileDrawer = document.getElementById('theme-toggle-mobile-drawer');
+        const themeLabelMobile = document.getElementById('theme-label-mobile');
+
+        function updateThemeLabels(isDark) {
+            if (themeLabelMobile) {
+                themeLabelMobile.textContent = isDark ? 'Dark Mode' : 'Light Mode';
+            }
+            if (themeToggleBtn) {
+                themeToggleBtn.setAttribute('title', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+            }
+        }
+
+        function setTheme(theme) {
+            const isDark = theme === 'dark';
+            document.documentElement.classList.add('theme-transition');
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                document.documentElement.classList.remove('light');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.classList.add('light');
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            }
+            updateThemeLabels(isDark);
+            setTimeout(() => {
+                document.documentElement.classList.remove('theme-transition');
+            }, 350);
+        }
+
+        function toggleTheme() {
+            const isCurrentlyDark = document.documentElement.classList.contains('dark');
+            setTheme(isCurrentlyDark ? 'light' : 'dark');
+        }
+
+        if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
+        if (themeToggleMobileTop) themeToggleMobileTop.addEventListener('click', toggleTheme);
+        if (themeToggleMobileDrawer) themeToggleMobileDrawer.addEventListener('click', toggleTheme);
+
+        // Sync UI labels with active theme
+        updateThemeLabels(document.documentElement.classList.contains('dark'));
+
+        // Handle OS system preference changes dynamically if no explicit user preference stored
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (!localStorage.getItem('theme')) {
+                setTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+    </script>
+</body>
+
+</html>
